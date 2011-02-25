@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 /**
  * @file Similar By Terms Views data include file
