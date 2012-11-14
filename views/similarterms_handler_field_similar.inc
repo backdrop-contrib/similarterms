@@ -34,7 +34,6 @@ class similarterms_handler_field_similar extends views_handler_field {
   }
 
   function query() {
-    // we MIGHT want to ensure that the COUNT data is getting added here.
     $params = array(
       'function' => 'count',
     );
