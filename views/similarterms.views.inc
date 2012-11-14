@@ -1,21 +1,13 @@
 <?php
 
 /**
- * @file Similar By Terms Views data include file
- */
-
-function similarterms_views_data() {
-  
-  // Basic table information.
-  $data['similarterms']['table']['group']  = t('Similar By Terms');
-
-  // what's this do?
-  $data['similarterms']['table']['join'] = array(
-    '#global' => array(),
-  );
-  
-  $data['similarterms']['similarterms'] = array(
+ * Implements hook_views_data()
+ **/
+function similarterms_views_data_alter(&$data) {
+  $data['similarterms']['similarterms']['moved to'] = array('node', 'similarterms');
+  $data['node']['similarterms'] = array(
     'title' => t('Similarity'),
+    'group' => t('Similar By Terms'),
     'help' => t('Percentage/count of terms which node has in common with node given as argument.'),
     'field' => array(
       'handler' => 'similarterms_handler_field_similar',
@@ -25,44 +17,17 @@ function similarterms_views_data() {
       'handler' => 'similarterms_handler_sort_similar',
     ),
   );
-  
-  // nid
-  $data['similarterms']['nid'] = array(
+  $data['similarterms']['nid']['moved to'] = array('node', 'similar_nid');
+  $data['node']['similar_nid'] = array(
     'title' => t('Nid'),
+    'group' => t('Similar By Terms'),
     'help' => t('ID of content item(s). Passes term ids to Similar By Terms.'), // The help that appears on the UI,
-    
-    // Information for accepting a nid as an argument
     'argument' => array(
       'handler' => 'similarterms_handler_argument_node_nid',
-      'parent' => 'views_handler_argument_numeric', // make sure parent is included
+      // 'parent' => 'views_handler_argument_numeric', // make sure parent is included
       'name field' => 'title', // the field to display in the summary.
       'numeric' => TRUE,
       'validate type' => 'nid',
-    ),
-
-  );
-
-  return $data;
-}
-
-/**
- * Implementation of hook_views_handlers().
- */
-function similarterms_views_handlers() {
-  return array(
-    'info' => array(
-      'path' => drupal_get_path('module', 'similarterms') . '/views',
-    ),
-    'handlers' => array(
-      'similarterms_handler_sort_similar' => array(
-        'parent' => 'views_handler_sort',
-      ),
-      'similarterms_handler_argument_node_nid' => array(
-        'parent' => 'views_handler_argument_numeric',
-      ),
-      'similarterms_handler_field_similar' => array(
-        'parent' => 'views_handler_field',
-      ),
     ),
   );
 }
