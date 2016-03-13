@@ -1,7 +1,9 @@
 name = "Similar By Terms"
 description = "Use Views to show similar content based on taxonomy terms"
 core = 7.x
-dependencies[] = "views"
+dependencies[] = taxonomy
+dependencies[] = views
+
 package = "Views"
 files[] = similarterms.test
 files[] = views/similarterms_handler_argument_node_nid.inc
