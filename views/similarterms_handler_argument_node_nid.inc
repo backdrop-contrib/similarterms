@@ -56,7 +56,7 @@ class similarterms_handler_argument_node_nid extends views_handler_argument_nume
       '#title' => t('Limit similarity to terms within these vocabularies'),
       '#description' => t('Choosing any vocabularies here will limit the terms used to calculate similarity. It is usually best NOT to limit the terms, but in some cases this is necessary. Leave all checkboxes unselected to not limit terms.'),
       '#options' => $vocabularies,
-      '#default_value' => empty($this->options['vocabularies']) ? array() : $this->options['vocabularies'],
+      '#default_value' => empty($this->options['vocabularies'])?array() : $this->options['vocabularies'],
       '#fieldset' => 'similarterms',
     );
 
@@ -84,14 +84,14 @@ class similarterms_handler_argument_node_nid extends views_handler_argument_nume
     }
 
     // $vocabulary_vids is array of vocabulary ids (a.k.a. vids, confusing right?)
-    $vocabulary_vids = empty($this->options['vocabularies']) ? array() : $this->options['vocabularies'];
-    
+    $vocabulary_vids = empty($this->options['vocabularies'])?array() : $this->options['vocabularies'];
+
     foreach ($vocabulary_vids as $key => $val) {
       if ($val === 0) {
         unset($vocabulary_vids[$key]);
       }
     }
-    
+
     $select = db_select('taxonomy_index', 'ti');
     $select->addField('ti', 'tid');
 

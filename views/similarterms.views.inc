@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Implements hook_views_data()
+ * Implements hook_views_data().
  **/
 function similarterms_views_data_alter(&$data) {
   $data['similarterms']['similarterms']['moved to'] = array('node', 'similarterms');

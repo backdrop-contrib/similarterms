@@ -45,7 +45,7 @@ class similarterms_handler_field_similar extends views_handler_field {
       return $values->{$this->field_alias};
     }
     elseif ($this->view->tids) {
-      $output = round($values->{$this->field_alias}/count($this->view->tids) * 100);
+      $output = round($values->{$this->field_alias} / count($this->view->tids) * 100);
       if (!empty($this->options['percent_suffix'])) {
         $output .= '%';
       }

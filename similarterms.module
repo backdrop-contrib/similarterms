@@ -7,6 +7,17 @@
 function similarterms_views_api() {
   return array(
     'api' => 3,
-    'path' => drupal_get_path('module', 'similarterms') . '/views',
+    'path' => backdrop_get_path('module', 'similarterms') . '/views',
+  );
+}
+
+/**
+ * Implements hook_autoload_info().
+ */
+function similarterms_autoload_info() {
+  return array(
+    'similarterms_handler_argument_node_nid' => 'views/similarterms_handler_argument_node_nid.inc',
+    'similarterms_handler_field_similar' => 'views/similarterms_handler_field_similar.inc',
+    'similarterms_handler_sort_similar' => 'views/similarterms_handler_sort_similar.inc',
   );
 }
